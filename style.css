@@ -201,11 +201,11 @@ h1 {
 
 /*-----------------------*/
 
-.taskList{
+.tasksList{
 	list-style-type: none;
 }
 
-.taskIten {
+.taskItem {
 	position: relative;
 }
 

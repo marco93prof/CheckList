@@ -7,9 +7,11 @@ function handleControlVars( type, arr ){
 		break;
 		
 		case "eraseTask":
+			//parse task name
 			let taskName = "";
 			for( let i=0; i < arr[0].length - 2; ++i)
 				taskName += arr[0][i];
+			//remove task from array
 			actualTasksArray.splice( actualTasksArray.indexOf(taskName), 1 );
 		break;
 
@@ -43,15 +45,15 @@ function addTask(element) {
 	else {
 		handleControlVars("addTask", [taskName]);
 		element.target.previousElementSibling.value = "";
-		let taskList = document.getElementsByClassName("taskList")[0];
-		taskList.appendChild( createTaskElement( "iten"+lastID, taskName ) );
+		let tasksList = document.getElementsByClassName("tasksList")[0];
+		tasksList.appendChild( createTaskElement( "item"+lastID, taskName ) );
 	}
 }
 
 function createTaskElement( idName, taskName ){
 	let li = document.createElement("li");
 	li.id = idName;
-	li.className = "taskIten";
+	li.className = "taskItem";
 
 	let label = document.createElement("label");
 	label.className = "labelTask";
@@ -98,11 +100,22 @@ function eraseTask( element ) {
 
 function eraseList(){
 	handleControlVars("eraseList", []);
-	document.getElementsByClassName("taskList")[0].innerHTML = "";
+	document.getElementsByClassName("tasksList")[0].innerHTML = "";
+	localStorage.clear();
 }
 
 //=========================================
 
+function saveList() {
+	//erase old saved list
+	localStorage.clear();
+
+	//get the raw list (have to parse on "onload" function)
+	let raw = document.getElementsByClassName("tasksList")[0].innerText;
+	
+	//save the actual raw list in ONE key (unique key is to order purpose)
+	localStorage.setItem("rawSavedTasksList", raw);
+}
 
 /////////////////////////////////////////// 
 //                   MAIN 
@@ -112,23 +125,42 @@ function eraseList(){
 var lastID = 0;
 var actualTasksArray = [];
 
+onload = function() {
+	
+	//Get the list to fill
+	let list = document.getElementsByClassName("tasksList")[0];
+	
+	//Get the Local Storage *RAW* list
+	let raw = localStorage.getItem("rawSavedTasksList");
+	
+	//Parse the raw list
+	for( let i=0; i<raw.length; ) {
+		let taskName = "";
+		while( raw[i] !== "\n" )
+			taskName += raw[i++];
+		i += 3;
+		
+		//Insert the item on list
+		console.log(taskName);
+		handleControlVars("addTask", [taskName]);
+		list.appendChild( createTaskElement( "item"+lastID, taskName ) );
+	}
+
+		// tasksList.appendChild( createTaskElement( "item"+lastID, taskName ) );
+
+	console.log(localStorage);
+	console.log(raw);
+}
+
 // Add a new task in the list 
 let btnAdd = document.getElementsByClassName("btnAdd")[0];
 btnAdd.addEventListener( "click", addTask );
+
+// Save all tasks of the list
+let btnSaveList = document.getElementsByClassName("btnSaveList")[0];
+btnSaveList.addEventListener( "click", saveList );
 
 // Erase all tasks of the list
 let btnEraseList = document.getElementsByClassName("btnEraseList")[0];
 btnEraseList.addEventListener( "click", eraseList );
 
-localStorage.clear();
-localStorage.setItem("9","tres");
-localStorage.setItem("3","tres");
-localStorage.setItem("4","quatro");
-localStorage.setItem("2","dois");
-localStorage.setItem("1","um");
-localStorage.setItem("5","um");
-localStorage.setItem("6","um");
-localStorage.setItem("7","um");
-localStorage.setItem("8","um");
-
-console.log(localStorage);
