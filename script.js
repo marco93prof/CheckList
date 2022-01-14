@@ -145,11 +145,6 @@ onload = function() {
 		handleControlVars("addTask", [taskName]);
 		list.appendChild( createTaskElement( "item"+lastID, taskName ) );
 	}
-
-		// tasksList.appendChild( createTaskElement( "item"+lastID, taskName ) );
-
-	console.log(localStorage);
-	console.log(raw);
 }
 
 // Add a new task in the list 
