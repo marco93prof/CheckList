@@ -28,7 +28,13 @@ function addTask(element) {
 
 	if( taskName == "") {
 		window.alert("Fill the name of the new task.");
-	}
+	}	
+
+	// else if( !taskName.match("^[A-Za-z0-9]+$") ) { window.alert("The task name must be alphanumeric."); }
+
+	else if( taskName.length > 64) {
+		window.alert("This task name is too long.");
+	}	
 
 	else if( actualTasksArray.indexOf(taskName) > -1 ){
 		window.alert(`The task "${taskName}" is already on the list.`);
@@ -113,3 +119,16 @@ btnAdd.addEventListener( "click", addTask );
 // Erase all tasks of the list
 let btnEraseList = document.getElementsByClassName("btnEraseList")[0];
 btnEraseList.addEventListener( "click", eraseList );
+
+localStorage.clear();
+localStorage.setItem("9","tres");
+localStorage.setItem("3","tres");
+localStorage.setItem("4","quatro");
+localStorage.setItem("2","dois");
+localStorage.setItem("1","um");
+localStorage.setItem("5","um");
+localStorage.setItem("6","um");
+localStorage.setItem("7","um");
+localStorage.setItem("8","um");
+
+console.log(localStorage);

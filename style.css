@@ -86,6 +86,13 @@ h1 {
 	cursor: pointer;
 }
 
+.btnAdd:hover {
+	background-color: #070;
+	cursor: pointer;
+}
+
+.btnAdd:active { background-color: #0f0; }
+
 .btnEraseList {
 	top: 50%;
 	right: 20px;
@@ -93,11 +100,26 @@ h1 {
 	background-color: #c00;
 }
 
-.btnEraseList:hover {
+.btnEraseList:hover{
 	background-color: #a00;
 	cursor: pointer;
 }
 
+.btnEraseList:active{ background-color: #f00; }
+
+.btnSaveList {
+	top: 50%;
+	right: 144px;
+	transform: translateY(-50%);
+	background-color: #29c;
+}
+
+.btnSaveList:hover {
+	background-color: #18a;
+	cursor: pointer;
+}
+
+.btnSaveList:active { background-color: #5cf; }
 
 /*-----------------------*/
 /*		CUSTOM CHECK BOX   */
