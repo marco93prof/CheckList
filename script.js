@@ -1,11 +1,41 @@
+function handleControlVars( type, arr ){
+	switch( type ) {
+		
+		case "addTask":
+			lastID += 1;
+			actualTasksArray.push(arr[0]);
+		break;
+		
+		case "eraseTask":
+			let taskName = "";
+			for( let i=0; i < arr[0].length - 2; ++i)
+				taskName += arr[0][i];
+			actualTasksArray.splice( actualTasksArray.indexOf(taskName), 1 );
+		break;
+
+		case "eraseList":
+			lastID = 0;
+			actualTasksArray = [];
+		break;
+
+		default:
+			console.log("ERROR | function handleGlobalVars(type, arr)");
+	}
+}
+
 function addTask() {
 	let taskName = document.getElementsByClassName("inputTask")[0].value;
-	
+
 	if( taskName == "") {
-		window.alert("Fill the new task name.");
+		window.alert("Fill the name of the new task.");
 	}
+
+	else if( actualTasksArray.indexOf(taskName) > -1 ){
+		window.alert(`The task "${taskName}" is already on the list.`);
+	}
+
 	else {
-		lastID += 1; //GLOBAL
+		handleControlVars("addTask", [taskName]);
 		let taskList = document.getElementsByClassName("taskList")[0];
 		taskList.appendChild( createTaskElement( "iten"+lastID, taskName ) );
 	}
@@ -35,39 +65,45 @@ function createTaskElement( idName, taskName ){
 	return li;
 }
 
-function destakLabel(element) {
+//=========================================
+function destakLabel( element ) {
 	element.target.style.boxShadow = "0 0 2px #080";
 }
 
-function undestakLabel(element) {
+function undestakLabel( element ) {
 	element.target.style.boxShadow = "none";
 }
 
-function destakErase(element) {
+function destakErase( element ) {
 	element.target.previousElementSibling.style.boxShadow = "0 0 2px #f00";
 }
 
-function undestakErase(element) {
+function undestakErase( element ) {
 	element.target.previousElementSibling.style.boxShadow = "none";
 }
 
-///////////////////////////////////////////
-function eraseTask(element) {
-	element.target.parentElement.remove();
+//=========================================
+function eraseTask( element ) {
+	let rmv = element.target.parentElement;
+	handleControlVars("eraseTask", [rmv.innerText]);
+	rmv.remove();
 }
 
 function eraseList(){
-	lastID = 0; //GLOBAL
+	handleControlVars("eraseList", []);
 	document.getElementsByClassName("taskList")[0].innerHTML = "";
 }
+
+//=========================================
 
 
 /////////////////////////////////////////// 
 //                   MAIN 
 /////////////////////////////////////////// 
 
-// GLOBAL
+// GLOBAL CONTROL VARS
 var lastID = 0;
+var actualTasksArray = [];
 
 // Add a new task in the list 
 let btnAdd = document.getElementsByClassName("btnAdd")[0];
