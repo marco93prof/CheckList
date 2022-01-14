@@ -23,7 +23,7 @@ function handleControlVars( type, arr ){
 	}
 }
 
-function addTask() {
+function addTask(element) {
 	let taskName = document.getElementsByClassName("inputTask")[0].value;
 
 	if( taskName == "") {
@@ -36,6 +36,7 @@ function addTask() {
 
 	else {
 		handleControlVars("addTask", [taskName]);
+		element.target.previousElementSibling.value = "";
 		let taskList = document.getElementsByClassName("taskList")[0];
 		taskList.appendChild( createTaskElement( "iten"+lastID, taskName ) );
 	}
