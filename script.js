@@ -34,7 +34,7 @@ function newItem( id, name, checked ){
 	box.addEventListener( "mouseout", mouseoutItem );
 
 	let eraseBtn = document.createElement("div");
-	eraseBtn.className = "item-eraseBtn";
+	eraseBtn.className = "item-eraseBtn noselect";
 	eraseBtn.innerHTML = "-";
 	eraseBtn.addEventListener( "click", clickEraseBtn );
 	eraseBtn.addEventListener( "mouseover", mouseoverEraseBtn );
