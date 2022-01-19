@@ -5,32 +5,44 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>TASKS LIST</title>
+	<title>CHECK LIST</title>
 	<link rel="stylesheet" href="./style.css">
 	<link rel="icon" href="./favicon.png" type="image/gif" sizes="16x16">
 	<script src="./script.js" defer></script>
 </head>
 
 <body>
-	<div class="fullContainer">
+	<div class="all">
 
 		<header>
-			<h1>TASKS LIST</h1>
+			<h1>CHECK LIST</h1>
 		</header>
 
 		<div class="menu">
-			<label class="box inputLabel" for="inputTask">NEW TASK:</label>
-			<input class="inputTask" type="text" name="inputTask">
-			<div class="box btnAdd">+</div>
-			<div class="box btnSaveList">SAVE LIST</div>
-			<div class="box btnEraseList">ERASE LIST</div>
+			<label class="menu-label menu-box noselect" for="menu-input">NEW ITEM:</label>
+			<input class="menu-input" type="text" name="menu-input">
+			<div class="menu-addBtn menu-box noselect">+</div>
+			<div class="menu-eraseBtn menu-box noselect">ERASE LIST</div>
 		</div>
 		
-		<ul class="tasksList">
-			<!-- Fill via JS -->
+		<ul class="list">
+			<!-- FILL VIA JS -->
+			
+			<!--
+				<li id="ID1" class="item">
+					<div class="item-box">
+						<div class="item-checkbox">
+							<div class="item-checkmark">
+							</div>
+						</div>
+						<p class="item-text">Item 1</p>
+					</div>
+					<div class="item-eraseBtn noselect">-</div>
+				</li>
+			 -->
 		</ul>
 
-	</div> <!-- fullContainer-->
+	</div> <!-- all -->
 </body>
 
 </html>
