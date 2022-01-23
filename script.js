@@ -47,7 +47,7 @@ function newItem( id, name, checked ){
 
 function clickItem( element ) {
 	let checkbox = element.currentTarget.children[0];
-	if( checkbox.className[14] == "N" ){
+	if( checkbox.className[19] == "N" ){
 		checkbox.style.backgroundColor = "#090";
 		checkbox.className = `item-checkbox ${YESCHECKED}`;
 		//HANDLE GLOBAL CONTROL VARS
@@ -56,7 +56,7 @@ function clickItem( element ) {
 		checkedList[pos] = true;
 
 	}
-	else if( checkbox.className[14] == "Y" ){
+	else if( checkbox.className[19] == "Y" ){
 		checkbox.style.backgroundColor = "#fff";
 		checkbox.className = `item-checkbox ${NOTCHECKED}`;		
 		//HANDLE GLOBAL CONTROL VARS
@@ -110,8 +110,8 @@ function mouseoutEraseBtn( element ){
 var nextID = 0;
 var currentList = [];
 var checkedList = [];
-const NOTCHECKED = "Nchecked"; 
-const YESCHECKED = "Ychecked";
+const NOTCHECKED = "data-Nchecked";
+const YESCHECKED = "data-Ychecked";
 
 // Add a new item in the list 
 let menuAddBtn = document.getElementsByClassName("menu-addBtn")[0];
