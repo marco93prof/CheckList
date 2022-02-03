@@ -1,4 +1,4 @@
-<h3 align="center">⚡ A <i><b>Tasks List</i></b> ⚡</h3>
+<h3 align="center">⚡ A <i><b>Check List</i></b> ⚡</h3>
 <!-- <p align="center"><i>For study purposes only.<i></p> -->
 
 <hr>
